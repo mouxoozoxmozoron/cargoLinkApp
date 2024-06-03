@@ -99,7 +99,7 @@ class _OrderdisplayState extends State<Orderdisplay> {
         child: Column(
           children: [
             const Text(
-              "Mnage your order",
+              "Manage your order",
               style: subtitleStyle,
               textAlign: TextAlign.left,
             ),

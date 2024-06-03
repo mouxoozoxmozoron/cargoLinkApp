@@ -1,5 +1,6 @@
 import "package:cargolink/APIV1/requests/auth/logout_request.dart";
 import "package:cargolink/componnent/authpage.dart";
+import "package:cargolink/constants/widgets.dart";
 import "package:cargolink/navigations/routes_configurations.dart";
 import "package:flutter/material.dart";
 import "package:get/get_navigation/get_navigation.dart";
@@ -15,8 +16,8 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text('Mussa Aron'),
-            accountEmail: const Text('mussaaron20@gmail.com'),
+            accountName: const Text('Manyama Japhet'),
+            accountEmail: const Text('manyama@.com'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
@@ -54,7 +55,9 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('Profile'),
-            onTap: () {},
+            onTap: () {
+              warningToast('Not yet implemented');
+            },
           ),
           const Divider(),
           ListTile(
@@ -76,12 +79,9 @@ class NavBar extends StatelessWidget {
                 ),
               ),
             ),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.shopping_cart_checkout_rounded),
-            title: const Text('New Order'),
-            onTap: () {},
+            onTap: () {
+              warningToast('Not yet implemented');
+            },
           ),
           ListTile(
             leading: const Icon(Icons.shopping_cart_sharp),
@@ -93,12 +93,17 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.add_business_sharp),
             title: const Text('New Compny'),
-            onTap: () {},
+            onTap: () {
+              // Get.toNamed(RoutesClass.getcreatecomapnyRoute());
+              authPage(RoutesClass.getcreatecomapnyRoute(), {'id': ''});
+            },
           ),
           ListTile(
             leading: const Icon(Icons.business_center_outlined),
             title: const Text('My company'),
-            onTap: () {},
+            onTap: () {
+              warningToast('Not yet implemented');
+            },
           ),
           const Divider(),
           ListTile(

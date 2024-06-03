@@ -1,5 +1,6 @@
 import 'package:cargolink/APIV1/requests/auth/logout_request.dart';
 import 'package:cargolink/main.dart';
+import 'package:cargolink/screens/create_comapany.dart';
 import 'package:cargolink/screens/home.dart';
 import 'package:cargolink/screens/login.dart';
 import 'package:cargolink/screens/order.dart';
@@ -12,8 +13,6 @@ class RoutesClass {
   static String home = "/";
   static String getHomeRoute() => home;
 
-//
-//splash
   static String splashscreen = "/splash_screen";
   static String getsplashscreenRoute() => splashscreen;
 
@@ -25,6 +24,9 @@ class RoutesClass {
 
   static String register = "/register";
   static String getregisterscreenRoute() => register;
+
+  static String createcompany = "/createcompany";
+  static String getcreatecomapnyRoute() => createcompany;
 
   static String placeOrder = "/placeOrder";
   static String getplaceorderRoute() => placeOrder;
@@ -43,5 +45,6 @@ class RoutesClass {
     GetPage(page: () => Login(), name: login),
     GetPage(page: () => PlaceOrder(), name: placeOrder),
     GetPage(page: () => const Orderdisplay(), name: orderlist),
+    GetPage(page: () => const Createcompany(), name: createcompany),
   ];
 }

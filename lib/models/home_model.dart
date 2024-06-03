@@ -45,6 +45,7 @@ class TransportationCompany {
   String? routes;
   DateTime? createdAt;
   DateTime? updatedAt;
+  bool isdisplayingdetails;
   User? user;
 
   TransportationCompany({
@@ -62,6 +63,7 @@ class TransportationCompany {
     this.routes,
     this.createdAt,
     this.updatedAt,
+    this.isdisplayingdetails = false,
     this.user,
   });
 
@@ -86,6 +88,7 @@ class TransportationCompany {
             ? null
             : DateTime.parse(json["updated_at"]),
         user: json["user"] == null ? null : User.fromJson(json["user"]),
+        isdisplayingdetails: json["is_commenting"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {

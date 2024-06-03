@@ -10,9 +10,6 @@ import 'package:cargolink/constants/common_styles.dart';
 import 'package:cargolink/models/home_model.dart';
 import 'package:cargolink/navigations/routes_configurations.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/utils.dart';
-import '../models/home_model.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -29,7 +26,7 @@ List<TransportationCompany> filteredCompanies = [];
 List companies = [];
 bool isSearching = false;
 bool homeLoading = true;
-bool isExpanded = false;
+bool isdisplayingdetails = false;
 
 class _HomeState extends State<Home> {
   @override
@@ -231,7 +228,7 @@ class _HomeState extends State<Home> {
                                 //     'Manager Name: ${transportationCompany.user?.firstName ?? "N/A"} ${transportationCompany.user?.lastName ?? ""}'),
 
                                 Visibility(
-                                  visible: isExpanded,
+                                  visible: isdisplayingdetails,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -286,11 +283,7 @@ class _HomeState extends State<Home> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    MaterialButton(
-                                      color: const Color.fromARGB(
-                                          255, 190, 185, 185),
-
-                                      //passing data to another page
+                                    TextButton(
                                       onPressed: () {
                                         authPage(
                                           RoutesClass.getplaceorderRoute(),
@@ -307,11 +300,11 @@ class _HomeState extends State<Home> {
                                     ),
 
                                     //more about a company
-                                    isExpanded
+                                    isdisplayingdetails
                                         ? IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                isExpanded = false;
+                                                isdisplayingdetails = false;
                                               });
                                             },
                                             icon: const Icon(Icons.expand_less),
@@ -319,7 +312,7 @@ class _HomeState extends State<Home> {
                                         : IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                isExpanded = true;
+                                                isdisplayingdetails = true;
                                               });
                                             },
                                             icon: const Icon(Icons.expand_more),
