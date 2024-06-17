@@ -26,7 +26,7 @@ List<TransportationCompany> filteredCompanies = [];
 List companies = [];
 bool isSearching = false;
 bool homeLoading = true;
-bool isdisplayingdetails = false;
+// bool isdisplayingdetails = false;
 
 class _HomeState extends State<Home> {
   @override
@@ -228,7 +228,8 @@ class _HomeState extends State<Home> {
                                 //     'Manager Name: ${transportationCompany.user?.firstName ?? "N/A"} ${transportationCompany.user?.lastName ?? ""}'),
 
                                 Visibility(
-                                  visible: isdisplayingdetails,
+                                  visible:
+                                      transportationCompany.isdisplayingdetails,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -300,11 +301,16 @@ class _HomeState extends State<Home> {
                                     ),
 
                                     //more about a company
-                                    isdisplayingdetails
+                                    // isdisplayingdetails
+                                    transportationCompany.isdisplayingdetails
                                         ? IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                isdisplayingdetails = false;
+                                                // isdisplayingdetails = false;
+                                                transportationCompany
+                                                        .isdisplayingdetails =
+                                                    !transportationCompany
+                                                        .isdisplayingdetails;
                                               });
                                             },
                                             icon: const Icon(Icons.expand_less),
@@ -312,7 +318,8 @@ class _HomeState extends State<Home> {
                                         : IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                isdisplayingdetails = true;
+                                                transportationCompany
+                                                    .isdisplayingdetails = true;
                                               });
                                             },
                                             icon: const Icon(Icons.expand_more),

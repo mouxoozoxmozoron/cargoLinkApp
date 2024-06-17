@@ -5,7 +5,10 @@ import 'package:cargolink/componnent/nav_bar.dart';
 import 'package:cargolink/constants/common_styles.dart';
 import 'package:cargolink/constants/widgets.dart';
 import 'package:cargolink/models/cutommer_order_model.dart';
+import 'package:cargolink/navigations/routes_configurations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class Orderdisplay extends StatefulWidget {
   const Orderdisplay({super.key});
@@ -41,15 +44,13 @@ class _OrderdisplayState extends State<Orderdisplay> {
       // If receiptImage is available for any order, set pending to false and exit the loop
       if (order.receiptImage != null) {
         pending = false;
-        received = true;
         break;
       }
-      if (order.status == 1) {
-        delivered = true;
+      if (order.status == '1') {
         break;
       }
       if (order.position == '1') {
-        postioned = true;
+        delivered = true;
         break;
       }
     }
@@ -76,7 +77,7 @@ class _OrderdisplayState extends State<Orderdisplay> {
         successToast("Data available");
         // print('Company Name: ${company!.transportationCompanies![0].name}');
       } else {
-        errorToast("Not connected !");
+        warningToast("No order found !");
         print(
             "API Error: ${response.error}"); // Print the specific error message
       }
@@ -136,41 +137,48 @@ class _OrderdisplayState extends State<Orderdisplay> {
                               ),
                               Row(
                                 children: [
-                                  isPending
+                                  // Render pending icon if customerorder.status == 1, otherwise render done icon
+                                  custorder.status == '0'
                                       ? const Icon(
                                           Icons.pending_actions_rounded)
                                       : const Icon(Icons.done),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  const Icon(Icons.receipt_long_outlined),
+
+                                  if (custorder.position == '0' &&
+                                      custorder.status == '1')
+                                    const Icon(
+                                      Icons.countertops_outlined,
+                                      color: Colors.green,
+                                    ),
                                   const SizedBox(
                                     width: 10,
                                   ),
-                                  const Icon(Icons.car_rental),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  isDerivered
-                                      ? const Icon(
-                                          Icons.done_all,
-                                          color: Colors.green,
-                                        )
-                                      : const SizedBox(
-                                          width: 0,
-                                        ),
-                                  const SizedBox(
-                                    width: 10,
-                                  ),
-                                  TextButton(
-                                      onPressed: () {},
+
+                                  // Render done_all icon if customerorder.position == 1
+                                  if (custorder.position == '1')
+                                    const Icon(
+                                      Icons.done_all,
+                                      color: Colors.green,
+                                    ),
+                                  // Render pay button if customerorder.receipt_image is empty
+                                  if (custorder.receiptImage == null ||
+                                      custorder.receiptImage!.isEmpty)
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.toNamed(
+                                            RoutesClass.getverifypaymentRoute(),
+                                            arguments: custorder.id);
+                                      },
                                       child: const Text(
-                                        "Pay",
+                                        "pay",
                                         style: TextStyle(
                                           fontFamily: 'Poppins',
                                           fontSize: 18,
                                         ),
-                                      )),
+                                      ),
+                                    ),
                                 ],
                               )
                             ],

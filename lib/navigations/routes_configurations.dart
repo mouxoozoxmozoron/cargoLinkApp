@@ -1,10 +1,12 @@
 import 'package:cargolink/APIV1/requests/auth/logout_request.dart';
 import 'package:cargolink/main.dart';
 import 'package:cargolink/screens/create_comapany.dart';
+import 'package:cargolink/screens/verify_payment.dart';
 import 'package:cargolink/screens/home.dart';
 import 'package:cargolink/screens/login.dart';
 import 'package:cargolink/screens/order.dart';
 import 'package:cargolink/screens/place_order.dart';
+import 'package:cargolink/screens/register.dart';
 import 'package:cargolink/splash_dcreen.dart';
 import 'package:get/get.dart';
 
@@ -31,6 +33,9 @@ class RoutesClass {
   static String placeOrder = "/placeOrder";
   static String getplaceorderRoute() => placeOrder;
 
+  static String verifypament = "/verifypament";
+  static String getverifypaymentRoute() => verifypament;
+
   static String orderlist = "/orderlist";
   static String getorderlistrRoute() => orderlist;
 
@@ -46,5 +51,7 @@ class RoutesClass {
     GetPage(page: () => PlaceOrder(), name: placeOrder),
     GetPage(page: () => const Orderdisplay(), name: orderlist),
     GetPage(page: () => const Createcompany(), name: createcompany),
+    GetPage(page: () => const Createaccount(), name: register),
+    GetPage(page: () => const Verifypayment(), name: verifypament),
   ];
 }

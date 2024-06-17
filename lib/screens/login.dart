@@ -231,7 +231,7 @@ class _LoginState extends State<Login> {
 
                   TextButton(
                     onPressed: () {
-                      print('calling registration page');
+                      Get.toNamed(RoutesClass.getregisterscreenRoute());
                     },
                     child: const Text(
                       "Dont have an account?",
